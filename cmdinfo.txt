@@ -1,0 +1,76 @@
+1.安装Git(windows)
+$ git config --global user.name "Your Name"
+$ git config --global user.email "email@example.com"
+
+2.创建版本库
+git commit
+因为commit可以一次提交很多文件，所以你可以多次add不同的文件，比如
+$ git add file1.txt
+$ git add file2.txt file3.txt
+$ git commit -m "add 3 files."
+
+初始化一个Git仓库，使用git init命令。
+添加文件到Git仓库，分两步：
+第一步，使用命令git add <file>，注意，可反复多次使用，添加多个文件；
+第二步，使用命令git commit，完成。
+
+3.时光机穿梭
+要随时掌握工作区的状态，使用git status命令。
+如果git status告诉你有文件被修改过，用git diff可以查看修改内容。
+
+3.1版本回退
+HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
+穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+
+3.2工作区和暂存区
+暂存区是Git非常重要的概念，弄明白了暂存区，就弄明白了Git的很多操作到底干了什么
+
+3.3管理修改
+理解了Git是如何跟踪修改的，每次修改，如果不add到暂存区，那就不会加入到commit中。
+
+3.4撤销修改
+场景1：当你改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，用命令git checkout -- file。
+场景2：当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令git reset HEAD file，就回到了场景1，第二步按场景1操作。
+场景3：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。
+
+3.5删除文件
+命令git rm用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
+
+
+git remote rm origin
+git remote add origin https://github.com:kimyteam/learngit
+git remote add origin https://github.com/kimyteam/learngit
+git remote add origin git@github.com:kimyteam/learngit.git
+git remote add origin git@github.com:kimyteam/learngit.git
+git push -u origin master
+
+
+Administrator@kimy MINGW32 /h/megit/learngit (master)
+$ git clone git@github.com:kimyteam/gitskills.git
+Cloning into 'gitskills'...
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (3/3), done.
+Checking connectivity... done.
+
+
+cat主要有三大功能：
+1.一次显示整个文件。$ cat filename
+2.从键盘创建一个文件。$ cat > filename  
+   只能创建新文件,不能编辑已有文件.
+3.将几个文件合并为一个文件： $cat file1 file2 > file
+参数：
+-n 或 --number 由 1 开始对所有输出的行数编号
+-b 或 --number-nonblank 和 -n 相似，只不过对于空白行不编号
+-s 或 --squeeze-blank 当遇到有连续两行以上的空白行，就代换为一行的空白行
+-v 或 --show-nonprinting
+例：
+把 textfile1 的档案内容加上行号后输入 textfile2 这个档案里
+cat -n textfile1 > textfile2
+
+把 textfile1 和 textfile2 的档案内容加上行号（空白行不加）之后将内容附加到 textfile3 里。
+cat -b textfile1 textfile2 >> textfile3
+ 
+把test.txt文件扔进垃圾箱，赋空值test.txt
+cat /dev/null > /etc/test.txt  
